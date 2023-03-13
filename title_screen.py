@@ -2,9 +2,11 @@ import ascii_art
 import textwrap
 import os
 import fugue_map
+# fugue_map.Fugue_Map()
 
 
 def title_screen():
+
     print("#############################")
     print("#          FUGUE            #")
     print("#############################")
@@ -16,22 +18,25 @@ def title_screen():
 
     choice = input("What would you like to do?: \n")
 
-# Choices:
-    
- 
+    # Choices:
+
     if choice == "1" or choice == "new game".lower():
-        os.system('cls')
-        new_room = fugue_map.campfire
+        # os.system('cls')
+        my_map = fugue_map.Fugue_Map()
+        my_map.prep_data()
+        new_room = my_map.desert_camp
         new_room.in_current_room = True
+        os.system('cls')
         print("###############################################################################################")
         print("\n".join(textwrap.wrap(new_room.long_description, width=100, replace_whitespace=False)))
         print("###############################################################################################")
         print(new_room.ascii_art.center(30) + "\n")
         print("###############################################################################################")
+        current_room = new_room
 
         return
-    
-    
+
+
 #
     elif choice == "2" or choice.lower == "continue":
         #  Load Game
@@ -60,4 +65,5 @@ def title_screen():
 #
     else:
         print("Invalid selection. Try again: ")
+
 
